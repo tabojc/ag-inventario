@@ -4,8 +4,8 @@
         <th width='200px'>Tienda</th>
         <th>Producto</th>
         <th width='80px'>Unidad</th>
-        <!--th width='80px'>Existencia</th>
-        <th width='90px'>Fecha</th-->
+        <!--th width='80px'>Existencia</th-->
+        <th width='90px' style='display:none'>Fecha</th-->
 	<?php
     $i = 0;
     $msg = "";
@@ -18,14 +18,15 @@
         $medida = $data['Medida']['denunimed'];
         //$medida = $data['Articulo']['codunimed'];
         //$existencia = $data['Inventario']['existencia'];
-        //$fecha = $this->Time->format($data['Inventario']['fecha'], '%d-%m-%Y');
+        //$fecha = $this->Time->format($data['Inventario']['fecha'], '%d-%m-%Y %H:%M:%S');
+        $fecha = $data['Inventario']['fecha'];
 	?>
 		<tr>
 			<td><?php echo $tienda; ?></td>
 			<td><?php echo $articulo; ?></td>
 			<td style='text-align:center;' ><?php echo $medida; ?></td>
-			<!--td style='text-align:right;'><?php echo $existencia; ?></td>
-			<td style='text-align:center;'><?php echo $fecha; ?></td-->
+			<!--td style='text-align:right;'><?php echo $existencia; ?></td-->
+			<td style='display:none;text-align:center;' ><?php echo $fecha; ?></td>
 		</tr>
 	<?php
     if ($i >= $mostrado) {

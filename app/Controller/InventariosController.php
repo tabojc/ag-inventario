@@ -5,28 +5,8 @@ class InventariosController extends AppController {
 	public $components = array('Session');
 	public $uses = array('Inventario','Clasificacion','Subclasificacion', 'Articulo', 'Tienda', 'Medida');
     public $paginate = array('limit' => 10);
-        /*
-	public function beforeFilter() {
 
-            $excepciones = array('nuevo', 'recuperar','contrasena','captcha');
-            if (!in_array($this->params['action'], $excepciones)) {
-                if (!$this->Session->read('conectado')) {
-                    $this->redirect('/entradas/salir');
-                }
-            }
-	}
-
-	public function afterFilter() {
-		$data['Auditoria']['usuario'] = $this->Session->read('usuario_nombre');
-		$data['Auditoria']['modulo'] = $this->params['controller'];
-		$data['Auditoria']['accion'] = $this->params['action'];
-		$this->Auditoria->create();
-		$this->Auditoria->save($data);
-	}
-        */
     public function filtro() {
-        //$data = $this->Inventario->find('list', array('fields' => 'Inventarios.codtiend', 'order' => 'Inventarios.id ASC'));
-        //$conditions = array('Clasificacion.dencla NOT' => '');
         $listaCla = $this->Clasificacion->find('list', array('fields' => 'Clasificacion.dencla'/*, 'conditions' => $conditions*/,'order' => 'Clasificacion.codcla ASC'));
         /*foreach($listaCla as $indice => $valor) {
             $listaCla[$indice] = utf8_encode($valor);
@@ -43,9 +23,7 @@ class InventariosController extends AppController {
     public function listado() {
         $this->layout = 'ajax';
         $data = $this->request->data;
-        /*pr($data);
-        die();*/
-        //['OR']
+
         if ( !empty( $data['Inventario']['codcla'] ) )
                 $conditions['Clasificacion.codcla'] = $data['Inventario']['codcla'];
 
@@ -100,11 +78,8 @@ class InventariosController extends AppController {
         $options['fields'] = 'Tienda.dentie, Articulo.codart, Articulo.denart, Medida.denunimed, Inventario.existencia, Inventario.fecha';
         $options['conditions'] = $conditions;
         $options['order'] = 'Inventario.codart ASC';
-        //$options['limit'] = '13';
 
         $listaInv = $this->Inventario->find('all', $options);
-        //pr( $listaInv );
-
         
         $this->set('mostrado', 100);
         $this->set('filas', count($listaInv));
