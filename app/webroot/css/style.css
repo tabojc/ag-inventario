@@ -372,7 +372,7 @@ fieldset {
 	/*border: none;
 	margin-bottom: 1em;*/
     background:-moz-linear-gradient(center top , #d60000, #8b0000) repeat scroll 0 0 rgba(0, 0, 0, 0);
-	padding: 0px 5px;
+	padding: 8px 5px;
     margin: 0;
   -moz-border-radius:5px;
   border-radius: 5px;
@@ -398,7 +398,7 @@ fieldset fieldset div {
 	margin: 0 20px;
 }
 form div {
-	clear: both;
+	/*clear: both;/
 	margin-bottom: 1px;
 	margin-left: auto ;
 	margin-right: auto ;
@@ -1038,4 +1038,66 @@ div img {
 ui-widget-content {
     background: url("") repeat-x scroll 50% 50% white;
     color: #FFFFFF;
+}
+
+#bloqueMarco {
+	/*width: 100%;*/
+	/*height: 75px;*/
+}
+
+#bloqueOpcion {
+	text-align: center;
+    height: 20px;
+    /*width: 100px;*/
+}
+#bloqueFiltro {
+	float: left;
+	width: 480px;
+}
+
+#bloqueBuscar {
+	float: right;
+	width: 90px;
+    text-align: center;
+}
+
+#bloqueCategoria {
+}
+
+#bloqueCla {
+	float: left;
+}
+
+#bloqueSubCla {
+	float: left;
+}
+
+#bloqueProducto {
+	float: right;
+}
+
+#bloqueDescrip {
+
+}
+#opcion {
+    width: 20px;
+    height: auto;
+    margin: auto;
+    padding: auto;
+    height: 100%;
+    /*padding: 10px;*/
+}
+.activo {
+    display: block;
+}
+.inactivo {
+    display: none;
+}
+.icono_mas {
+    background: url(../img/add.png) no-repeat center center;
+    background-size: 20px auto;
+}
+.icono_menos {
+    background: url(../img/minus.png) no-repeat center center;
+    background-size: 20px auto;
 }

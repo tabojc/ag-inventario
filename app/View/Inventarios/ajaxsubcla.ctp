@@ -3,6 +3,8 @@
                 'options' => $listaSubCla,
                 'empty' => '(Seleccione)',
                 'style'=>'width:160px;',
-                'label' => 'Sub-Clasificaci&oacute;n'
+                'class' => 'validarForm',
+                'label' => 'Sub-Clasificaci&oacute;n',
+                'div' => false
             ));
 ?>

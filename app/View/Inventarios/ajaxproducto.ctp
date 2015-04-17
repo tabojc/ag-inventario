@@ -3,5 +3,8 @@
                 'options' => $listaProducto,
                 'empty' => '(Seleccione)',
                 'style'=>'width:160px;',
+                'class' => 'validarForm',
                 'label' => 'Producto',
-            ));?>
+                'div' => false,
+            ));
+?>

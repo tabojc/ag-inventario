@@ -1,5 +1,5 @@
 <?php echo "" ?>
-<table border='0'>
+<table id="listadoInv" border='0'>
 	<tr>
         <th width='200px'>Tienda</th>
         <th>Producto</th>

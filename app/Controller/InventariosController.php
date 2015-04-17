@@ -12,7 +12,7 @@ class InventariosController extends AppController {
             $listaCla[$indice] = utf8_encode($valor);
         }
         */
-        
+
         $listaSubCla = array();
         $listaProducto = array();
         $this->set('listaProducto', $listaProducto);
@@ -23,16 +23,6 @@ class InventariosController extends AppController {
     public function listado() {
         $this->layout = 'ajax';
         $data = $this->request->data;
-
-        if ( !empty( $data['Inventario']['codcla'] ) )
-                $conditions['Clasificacion.codcla'] = $data['Inventario']['codcla'];
-
-        if ( !empty( $data['Inventario']['subcla'] ) )
-                $conditions['Subclasificacion.cod_sub'] = $data['Inventario']['subcla'];
-
-        if ( !empty( $data['Inventario']['codart'] ) )
-                $conditions['Articulo.codart'] = $data['Inventario']['codart'];
-
 
         if ( !empty( $data['Inventario']['denart'] )) {
             $listadoE = array();
@@ -48,6 +38,15 @@ class InventariosController extends AppController {
             $buscar = implode('%', $listadoPro );
             $buscar = '%'.$buscar.'%';
             $conditions['Articulo.denart ILIKE'] = $buscar;
+        } else {
+            if ( !empty( $data['Inventario']['codcla'] ) )
+                    $conditions['Clasificacion.codcla'] = $data['Inventario']['codcla'];
+
+            if ( !empty( $data['Inventario']['subcla'] ) )
+                    $conditions['Subclasificacion.cod_sub'] = $data['Inventario']['subcla'];
+
+            if ( !empty( $data['Inventario']['codart'] ) )
+                    $conditions['Articulo.codart'] = $data['Inventario']['codart'];
         }
 
         $options['joins'] = array(
@@ -80,7 +79,7 @@ class InventariosController extends AppController {
         $options['order'] = 'Inventario.codart ASC';
 
         $listaInv = $this->Inventario->find('all', $options);
-        
+
         $this->set('mostrado', 100);
         $this->set('filas', count($listaInv));
         $this->set('listaInv', $listaInv);
@@ -98,18 +97,18 @@ class InventariosController extends AppController {
         );
         $this->set('listaSubCla',$listaSubCla);
     }
-    
+
     public function ajaxproducto() {
         $this->layout = 'ajax';
 
         $data = $this->request->data;
-        
+
         if ( !empty( $data['Inventario']['codcla'] ) )
                 $conditions['Clasificacion.codcla'] = $data['Inventario']['codcla'];
 
         if ( !empty( $data['Inventario']['subcla'] ) )
                 $conditions['Subclasificacion.cod_sub'] = $data['Inventario']['subcla'];
-        
+
         $options['joins'] = array(
             array('table' => 'siv_articulo',
                 'alias' => 'Articulo',
@@ -135,7 +134,7 @@ class InventariosController extends AppController {
                 )
             ),
         );
-        
+
         $options['fields'] = 'Articulo.codart, Articulo.denart';
         $options['order'] = 'Inventario.codart ASC';
         $options['conditions'] = $conditions;
